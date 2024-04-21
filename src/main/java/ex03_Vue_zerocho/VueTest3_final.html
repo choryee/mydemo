@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+<body>
+
+<div id="root">
+    <div>{{first}} 곱하기{{second}} 는??</div>
+    <form v-on:submit="onSubmitForm">
+        <input type="number" v-model="value" ref="answer">
+        <button type="submit">입력</button>
+    </form>
+
+    <div id="result">{{result}}</div>
+
+</div>
+
+</body>
+
+<script>
+    //v- 가 붙은것은 data, methods에 접근 할 수 있다.
+    // v-if="liked" 의 따옴표안에는 JS를 쓸수 있다.
+    // <div v-if="liked" html의 태그의 '속성'으로 데이터에 접근하려면, " "형식으로
+    // 태그사이의 부분에서는 {{}}으로 접근가능.
+    // methods에서는 a(){this.first}, //a()함수로 data의 first에 접근가능.
+    //v-model는 input와 data를 연결해주는 것.
+
+    const app=new Vue({
+        el:"#root",
+        //바뀌는 부분에 알아야. 그것을 data로 만드는것.
+        data:{ //여기부분은 react의 state와 비슷.
+            first:Math.ceil(Math.random()*9),
+            second:Math.ceil(Math.random()*9),
+            value:'',
+            result:''
+        },
+        methods:{
+            //aa(){return this.value}, //a()함수로 data의 first에 접근가능.
+            onSubmitForm(e){
+                e.preventDefault();
+                if(this.first* this.second == parseInt(this.value) ){
+                    this.result="정답";
+                    this.value="";
+                    this.first=Math.ceil(Math.random()*9);
+                    this.second=Math.ceil(Math.random()*9);
+                    this.$refs.answer.focus(); //ref="answer" 위 input 태그의 이름. 그것을 가져올때는 $refs로.
+                }else {
+                    this.result="땡";
+                    this.value="";
+                    this.$refs.answer.focus();
+
+                }
+
+
+            },
+        },
+
+    })
+</script>
+</html>

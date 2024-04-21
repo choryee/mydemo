@@ -1,0 +1,9 @@
+#section{background-color: aqua;  display: flex; font-size: 30px;
+    width:  600px; height: 70px;   }
+.article{margin-right: 5px; padding: 10px;}
+#left{float: left;}
+#section1{background-color: lightgray; font-size: 25px;
+    width: 200px; height: 250px;
+     border-style: solid;border-radius: 5%;
+}
+#footer{background-color: yellow; border-style: solid;  }

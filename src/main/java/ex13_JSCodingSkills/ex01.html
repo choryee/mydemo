@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+    <ui style="cursor: pointer">
+        <li>클릭하면 0</li>
+        <li>클릭하면 1</li>
+        <li>클릭하면 2</li>
+    </ui>
+
+</body>
+<script>
+    const items=document.querySelectorAll('li');
+    for(let i=0; i<items.length; i++){
+        items[i].addEventListener('click', ()=>{
+            alert(i);
+        })
+    }
+</script>
+
+<script>
+    const team=['Joe', 'Dyan','Bea','Theo'];
+    function alphabetizeTeam(team){
+        return [...team.sort()];
+    }
+    console.log(`alphabetizeTeam(team)>>${alphabetizeTeam(team)}`)
+
+    function orderTeam(arr){
+        let newArr=[];
+        for(let i=0; i<arr.length; i++){
+            newArr[i]=arr[i].charCodeAt(0);
+            //console.log(` arr.[i].charAt(0) >>${ arr[i].charCodeAt(0)}`)
+        }
+        return newArr;
+    }
+    console.log(`orderTeam(team)>>${orderTeam(team)}`)
+    orderTeam(team);
+
+
+//-----------------------------------
+    const cart=[
+        {name:"pen", price:10},
+        {name:"book", price: 35}
+    ]
+    function mapTest(){
+        return cart.map(m=>m.name)
+    }
+    console.log(`map>>${mapTest()}`)
+
+//-----------------------------------
+    let pizzaLike=true;
+    //Promise는 생성부분과 소비부분으로 나뉜다.
+    //생성부분
+    let pizza=new Promise((aa, bb)=>{
+        if(pizzaLike){
+            aa('피자주문합니다')
+        }else {
+            bb('not ordered')
+        }
+    });
+
+    //소비부분
+    pizza
+        .then(result=>{ // result는 성공시, 받는 변수명.
+            console.log(result)
+        })
+        .catch(err=>{
+            console.log(err)
+        })
+
+    //-----------------------------------
+    let str='the greatest!!';
+    let reverseStr=str.split('');
+    console.log(reverseStr)
+    let revStrNew=reverseStr.join('');
+    console.log(revStrNew);
+    console.log(reverseStr.reverse().join(''))
+
+
+
+
+
+
+
+
+
+</script>
+
+</html>

@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.3/jquery.min.js" integrity="sha512-STof4xm1wgkfm7heWqFJVn58Hm3EtS31XFaagaa8VMReCXAkQnJZ+jEy8PCC/iT18dFy95WcExNHFTqLyp72eQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
+    <title>Document</title>
+</head>
+<body>
+<script>
+    var cart1=[{name:"paper", price:100, quantity: 3}, {name:"pen", price: 32, quantity:5}];
+    var cart2={name:"paper", price:10, quantity:2};
+    var cart3=[{name:"paper"}, {name:"pen"}];
+
+   function calcTotal(cart){
+       var total=0;
+       for( var i=0; i<cart.length; i++){
+           var item=cart[i];
+           total+=item.price;
+       }
+       return total;
+   }
+
+   var foods=["noddle", "banana","soup"];
+   function cookAndEatArray(array, food){
+       arrayandItem(foods, food);
+       cookAndEat(food)
+   }
+
+   function arrayandItem(array, item){
+       for(var i=0; i<array.length; i++){
+           var item=array[i];
+       }
+   }
+
+   function cookAndEat(food){
+       cook(food);
+       eat(food);
+   }
+   //-----------
+    function arraySet(array, idx, value) {
+        return withArrayCopy(array, function (copy){
+            copy[idx]=value;
+        })
+    }
+
+    function withArrayCopy(array, modify){
+        var copy = array.slice();
+        modify(copy);
+        return copy;
+    }
+    //-----------
+    
+    function push(array, elem) {
+        return withArrayCopy1(array, function (copy){
+            copy.push(elem);
+        })
+    }
+    function withArrayCopy1(array, modify) {
+        var copy=array.slice();
+        modify(copy);
+        return copy;
+    }
+    console.log('push',push(foods, "mouse") )
+
+    //-----------
+    function drop_last(array) {
+     return withArrayCopy2(array, function (copy){
+         var idx=array.length-1;
+         copy.pop(idx);
+     })
+    }
+    function withArrayCopy2(array, modify){
+
+        var copy=array.slice();
+        modify(copy);
+        return copy;
+    }
+    console.log('drop_last', drop_last(foods));
+
+    //-----------
+    var item=[{name:"pen", price: 10}]
+    function objectSet(object, key, value) {
+        return withObjectCopy(object, function (copy){
+            copy[key]=value;
+        })
+    }
+    function withObjectCopy(object, modify) {
+        var copy=Object.assign({}, item);
+        modify(copy);
+        return copy;
+    }
+    console.log('objectSet',objectSet(item, 'quantity', 400) );
+
+
+</script>
+
+<div> 
+
+</div>
+
+</body>
+</html>

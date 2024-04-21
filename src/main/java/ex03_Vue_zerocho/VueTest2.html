@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+<body>
+
+    <div id="root">
+        <div >좋아요 눌렀음</div>
+        <input type="text" v-model="value"/>
+        <div>{{value}}</div>
+        <div>{{aa()}}</div>
+        <button  v-on:click="onClickButton">Like</button>
+    </div>
+</body>
+
+<script>
+    //v- 가 붙은것은 data, methods에 접근 할 수 있다.
+    // v-if="liked" 의 따옴표안에는 JS를 쓸수 있다.
+    // <div v-if="liked" html의 태그의 '속성'으로 데이터에 접근하려면, " "형식으로
+    // 태그사이의 부분에서는 {{}}으로 접근가능.
+    // methods에서는 a(){this.first}, //a()함수로 data의 first에 접근가능.
+
+    const app=new Vue({
+        el:"#root",
+        data:{
+            liked:false, //바뀌는 부분에 알아야. 그것을 data로 만드는것.
+            value:10,
+        },
+        methods:{
+            aa(){
+                return this.value;
+            },
+            onClickButton(){
+                this.liked=true; //this.liked는 datal.loked
+                console.log('눌렀음<<<')
+            },
+        },
+
+    })
+</script>
+</html>

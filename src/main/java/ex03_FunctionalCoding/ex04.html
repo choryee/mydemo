@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.3/jquery.min.js" integrity="sha512-STof4xm1wgkfm7heWqFJVn58Hm3EtS31XFaagaa8VMReCXAkQnJZ+jEy8PCC/iT18dFy95WcExNHFTqLyp72eQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
+    <title>Document</title>
+</head>
+<body>
+<script>
+    var o={a:1, b:2}
+
+   function objectSet(object, key, value){
+        var new_object=Object.assign({}, object);
+        //new_object[key]=value;
+       new_object.key=value; //위와 둘다 됨.
+        return new_object;
+   }
+
+   console.log('objectSet>>', objectSet(o, "price", 37));
+
+    function setPrice(item, new_price){
+        return objectSet(o, "price", new_price);
+    }
+    console.log('setPrice>>',setPrice(o, 67));
+
+    function setQuantity(item, new_quantity){
+        return objectSet(o, "quantity", new_quantity)
+    }
+    console.log('setQuantity',setQuantity(o,  90));
+
+    //----------------------------
+    var cart=[{name:"paper", price:10}, {name:"pen", price: 32}];
+    var cart1=[{name:"paper"}, {name:"pen"}];
+    function setPriceByName(cart, name,price){
+        for(var i=0; i<cart.length; i++){
+            if(cart[i].name === name) cart[i].price=price;
+        }
+        return cart;
+    }
+    console.log('setprice>>',setPriceByName(cart, "pen", 50) )
+
+    function setPriceByNameRefac(cart, name, price){
+        var new_cart=cart1.slice();
+        for(var i=0; i<new_cart.length; i++){
+            if (new_cart[i].name === name ) new_cart[i]=setPrice(new_cart[i], price)
+        }
+        return new_cart;
+    }
+    console.log('setPriceByNameRefac', setPriceByNameRefac(cart1, "pen", 90))
+    //----------------------------
+    var cart2=[{name:"paper", price:10}, {name:"pen", price: 32}];
+    var cart3=[{name:"paper"}, {name:"pen"}];
+
+    function isInCart(cart, name){
+        return indexOfItem(cart, name) !=null;
+    }
+
+    function indexOfItem(cart, name){
+        for (var i=0; i<cart.length; i++){
+            if( cart[i].name === name) return i;
+        }
+        return null;
+    }
+
+    console.log('isInCart', isInCart(cart3, 'paper'));
+
+
+</script>
+
+<div> 
+
+</div>
+
+</body>
+</html>

@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.3/jquery.min.js" integrity="sha512-STof4xm1wgkfm7heWqFJVn58Hm3EtS31XFaagaa8VMReCXAkQnJZ+jEy8PCC/iT18dFy95WcExNHFTqLyp72eQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
+    <title>Document</title>
+</head>
+<body>
+<script>
+    var cart1=[{name:"paper", price:100, quantity: 3}, {name:"pen", price: 32, quantity:5}];
+    var cart2={name:"paper", price:10, quantity:2};
+    var cart3=[{name:"paper"}, {name:"pen"}];
+
+    console.log('cart2[]', cart2["name"] );
+
+    function hasOwnProperty(cart,name){
+        for( var i=0; i<cart.length; i++){
+            //console.log(cart[i].name);
+           if( cart[i]["name"] === name ) return true;
+        }
+    return false;
+    }
+   // hasOwnProperty(cart1);
+    console.log('hasOwnProperty',hasOwnProperty(cart1, "pen") );
+    //------------------
+    function calcTotal(cart){
+        var total=0;
+        for( var i=0; i<cart.length; i++){
+            //console.log('cart', cart[i])
+            var item=cart[i];
+            total+=item.price;
+        }
+        return total;
+    }
+    console.log('calcTotal', calcTotal(cart1));
+
+    function getWatchDiscount(cart,name){ //장바구니 합 100불이상, 장바구니에 시계있으면
+        return hasOwnProperty(cart,name) && calcTotal(cart)>100;
+    }
+
+   console.log('getWatchDiscount', getWatchDiscount(cart1, "pen"))
+    //------------------
+    function objectSet(object, key, value){
+        var new_object=Object.assign({}, object);
+        //new_object[key]=value;
+        new_object.key=value; //위와 둘다 됨.
+        return new_object;
+    }
+
+    // var item=[{name:"cup", price: 12, quantity: 3}]
+
+function incrementQuantityByName(cart, name){
+        var item=[{}];
+       item=cart['name']; // 이건 에러남. undefined
+       // var item=cart['name']; //cart.name //paper
+        console.log('item>>', item); //paper
+        var quantity=item['quantity'];
+        console.log('quantity>>', quantity); //paper
+        var newQuantity=quantity+1;
+        var newItem=objectSet(item, 'quantity', newQuantity);
+        var newCart=objectSet(cart, name, newItem);
+        return newCart;
+}
+
+console.log('incrementQuantityByName',incrementQuantityByName(cart1, "paper") );
+
+</script>
+
+<div> 
+
+</div>
+
+</body>
+</html>

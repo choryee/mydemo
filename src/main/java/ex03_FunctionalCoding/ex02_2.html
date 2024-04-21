@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.3/jquery.min.js" integrity="sha512-STof4xm1wgkfm7heWqFJVn58Hm3EtS31XFaagaa8VMReCXAkQnJZ+jEy8PCC/iT18dFy95WcExNHFTqLyp72eQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
+    <title>Document</title>
+</head>
+<body>
+<script>
+   var carts=[];
+
+   function add_item_carts(name, price){
+       var new_carts=carts.slice();
+       new_carts.push({name: name, price: price})
+       return new_carts;
+   }
+
+   add_item_carts("cup", 100);
+   add_item_carts("pen", 20);
+   console.log('carts>>', carts);
+
+   var mailing_list=[];
+
+   function add_contact(mailing_list, email){
+       var list_copy=mailing_list.slice();
+       list_copy.push(email);
+       return list_copy;
+   }
+
+   function submit_form_handler(event){
+       var form=event.target;
+       var email=form.elements["email"].value;
+       add_contact(email);
+   }
+
+</script>
+
+<div> 
+    장바구니 금액 : 
+
+</div>
+
+</body>
+</html>

@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>노드 리스트</title>
+</head>
+<body>
+<div id="nodeDiv">
+  <h1>노드 리스트 살펴보기</h1>
+  <p>HTML</p>
+  <p>CSS</p>
+  <p>Javascript</p>
+</div>
+
+    <div id="app">
+      <h4>{{message}}</h4>
+    </div>
+
+</body>
+
+<script type="text/javascript" src="https://unpkg.com/vue"></script>
+<script>
+  var model={ message: "hello, jon gaga"};
+  var vm = Vue.createApp({
+    name : "App",
+    data(){
+      return model;
+    }
+  }).mount('#app')
+
+
+let nodeDiv=document.querySelector('#nodeDiv');
+let newP=document.createElement('p');
+let textNode=document.createTextNode("텍스트");
+
+newP.appendChild(textNode);
+nodeDiv.appendChild(newP)
+//document.body.appendChild(newP);
+
+
+
+
+</script>
+</html>

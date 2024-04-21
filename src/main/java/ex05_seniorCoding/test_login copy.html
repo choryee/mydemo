@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Test login</title>
+    <script src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.3/jquery.min.js" integrity="sha512-STof4xm1wgkfm7heWqFJVn58Hm3EtS31XFaagaa8VMReCXAkQnJZ+jEy8PCC/iT18dFy95WcExNHFTqLyp72eQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
+ <style>
+    * {font-size: 32px;}
+ </style>
+
+ <!--  <script src="login.js" /> -->
+
+ <script> 
+// 밑 해석. 원도우가 on(이것도 함수) load됐을때, 콘솔내용을 찍어라 의미.
+$( window ).on( "load", console.log('onload!!') );
+
+$( document ).ready(function() {
+console.log( "ready!" ); 
+// $('#err').hide();
+changeColor();
+});
+ 
+function changeColor(){
+    var title=$('#title');
+    title.css("color", "blue");
+ //title.style("color:red;");
+
+ $("<h1>").text("text추가 연습하기").appendTo("body");
+}
+
+
+ 
+
+
+    function checkLogin1(){
+        var uid=$('#userid').val();
+        var upw=$('#userpw').val();
+        console.log('userid>>', uid, 'userpw>>',upw)
+        
+        var frm=$('#frm'),
+            msg=$('#msg'),
+            err=('#err');
+
+            if(uid=== 'a' && upw==='a'){
+                frm.hide();
+                msg.show();
+                err.hide();
+            }else {
+                frm.show();
+                msg.hide();
+                err.show();
+            }
+
+            return false;
+    }
+
+
+
+</script>
+
+</head>
+<body>
+    <h5><p id="title"> 시니어 코딩 웹개발 04 JS한방에 정리하기 2_2 맨 앞</p></h5>
+<!--밑 checkLogin()의 결과는 false이고, 결국 return false가 되므로, onsubmit="false"가 되면, 화면 갱신이 안 되어
+ 위에서 찍은 console.log의 결과가 콘솔창에 보인다. 제이쿼리 책. p. 345-->
+ <form id="frm" onsubmit="return checkLogin1()" method="post">
+  <!--    <form action="checkLogin()"> -->
+    <input type="text" id="userid" value="" placeholder="Type your id..">
+    <input type="password" id="userpw" value="" placeholder="Type your password..">
+    <button> Sing-in</button> <!-- form안에 button은 submit이 된다.즉, 위의 action="checkLogin()를 실행한다는 것.
+     안 타게 하려면, <button type="button"> Sing-in</button> 이렇게 하면, 버튼의 onclick등을 탄다. -->
+ </form>
+
+ <p id="msg" style="text-align: center; color: green; display: none;">로그인 성공!!</p>
+ <p id="err" style="text-align: center; color: green; display: none;">로그인 fail!!</p>
+</body>
+</html>

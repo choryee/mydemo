@@ -1,0 +1,144 @@
+<head>
+    <title>WEB1 - Welcome</title>
+    <meta charset="utf-8">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.3/jquery.min.js" integrity="sha512-STof4xm1wgkfm7heWqFJVn58Hm3EtS31XFaagaa8VMReCXAkQnJZ+jEy8PCC/iT18dFy95WcExNHFTqLyp72eQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
+   <!--  <script src="colors.js"></script> -->
+
+
+    <script>
+        $('#night_day').text('hey!!');
+
+        function nightDayHandler1(color){
+            // document.querySelector('body').style.backgroundColor=color;
+            if(color == 'green') {
+            $('body').css('backgroundColor', 'blue');
+            }else{
+            $('body').css('backgroundColor', 'grey');
+            }
+        }
+
+     //   $('.span').css('backgroundColor', 'blue');
+
+    </script>
+  </head>
+  <body>
+    <h1 style="background-color: coral ;"><a href="index.html">WEB</a></h1>
+
+    <!-- <input id="night_day" type="button" value="night" onclick="nightDayHandler('green');">
+    <input id="day_day" type="button" value="day" onclick="nightDayHandler('white');"> -->
+
+    <input type="button" value="night" onclick="
+    document.querySelector('body').style.backgroundColor='black';
+    document.querySelector('body').style.color='blue';
+    ">
+    <input type="button" value="day" onclick="
+    document.querySelector('body').style.backgroundColor='white';
+    document.querySelector('body').style.color='red';
+    ">
+
+      <!--   document.querySelector('#night-day')가 this가 됨. 18강.뒤 리펙토링에서 
+
+    <input id="night_day" type="button" value="night" onclick="
+     if(document.querySelector('#night_day').value === 'night'){
+        document.querySelector('body').style.backgroundColor='black';
+        document.querySelector('body').style.color='blue';
+        document.querySelector('#night_day').value='day';
+     }else {
+        document.querySelector('body').style.backgroundColor='white';
+        document.querySelector('body').style.color='red';
+        document.querySelector('#night_day').value='night';
+     }
+    "> -->
+<script>
+    //밑 24강.
+    var Links={
+        setColor:function(color){ //29강.
+        var links=document.querySelectorAll('a');
+        var i=0;
+        while(i<links.length){
+            links[i].style.color=color;
+            i++;
+        }
+    }
+    }
+
+    // function LinksSetColor(color){ //29강.
+    //     var links=document.querySelectorAll('a');
+    //     var i=0;
+    //     while(i<links.length){
+    //         links[i].style.color=color;
+    //         i++;
+    //     }
+    // }
+
+    var Body={ //33강.첨. 객체에 '함수'로 담으려는 것.
+        setColor:  function(color){
+        document.querySelector('body').style.color=color;
+    },
+        setBackgroundColor:function(color){
+        document.querySelector('body').style.backgroundColor='black';
+    }
+
+    }
+
+
+    // function BodySetColor(color){
+    //     document.querySelector('body').style.color=color;
+    // }
+
+    // function BodySetBackgroundColor(color){
+    //     document.querySelector('body').style.backgroundColor='black';
+    // }
+
+
+    function nightDayHandler(self){
+    var target=document.querySelector('body');
+    if(self.value === 'night'){
+       // BodySetBackgroundColor('white') //33강. 객체로 한것.
+       Body.setBackgroundColor('white')
+       // BodySetColor('white');
+        Body.setColor('white');
+        self.value='day';
+
+        //LinksSetColor('powderblue');    
+        Links.setColor('powderblue');     
+
+    }else {
+       // BodySetBackgroundColor('white')
+        Body.setBackgroundColor('white')
+       // BodySetColor('red');
+        Body.setColor('red');
+        self.value='night';
+
+       // LinksSetColor('blue');
+        Links.setColor('blue');
+    }
+    }
+</script>
+    
+<input id="night_day" type="button" value="night" onclick="
+    nightDayHandler(this);
+    ">
+
+
+
+
+
+    <ol>
+      <li><a href="1.html">HTML</a></li>
+      <li><a href="2.html">CSS</a></li>
+      <li><a href="3.html">JavaScript</a></li>
+    </ol>
+    <h2>CSS</h2>
+    <p>The World Wide Web (abbreviated WWW or the Web) is an information space where documents and other resources are identified 
+        by Uniform Resource Locators (URLs), interlinked by hypertext links, and can be accessed via the Internet.[1] English scientist
+         Tim Berners-Lee invented the World Wide Web in 1989. He wrote the first web browser computer program in 1990 while employed 
+         at CERN in Switzerland.[2][3] The Web browser was released outside of CERN in 1991, first to other research institutions
+          starting in January 1991 and to the general public on the Internet in August 1991.
+    </p>
+  
+  
+  </body>

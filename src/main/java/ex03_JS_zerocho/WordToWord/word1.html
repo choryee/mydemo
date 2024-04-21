@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+
+<div><span id="order">1</span>번째 참가자</div><br/>
+<div>제시어 : <span id="word"></span><br/>
+<input type="text" id="input">
+<button id="btn1">입력</button>
+
+
+    <script>
+        // const number=prompt('몇 명이 참가하나요?');
+        // const realNumber=Number(number);
+        const $button = document.querySelector('#btn1');
+        const $input = document.querySelector('input');
+        const $word=document.querySelector('#word');
+        const $order=document.querySelector('#order');
+
+       // let word='아버지';
+        let newWord;
+        let firstWord;
+        let lastChar;
+
+        window.onload=function(){
+            const myArray = ["apple", "banana", "pink", "party"];
+            const word = myArray[Math.floor(Math.random() * myArray.length)];
+            $word.innerHTML=word;
+            lastChar=word.charAt(word.length-1);
+            return lastChar;
+        }
+
+
+        function onInput(e){
+        console.log('lastChar>>', lastChar)
+          // console.log('$input>>', e.target.value);
+            newWord=$input.value;
+            const firstWord=newWord.charAt(0);
+            console.log('firstWord>>>',firstWord);
+            return firstWord;
+        }
+       // console.log('$input>>', $input);
+
+        const onClickButton=()=>{
+            // const onload=onload();
+            const onInputFunc=onInput();
+           // const onInputFunc=firstWord;
+            console.log('onInputFunc>>', onInputFunc); //undefined.
+            if(lastChar===onInputFunc) alert('통과!!')
+            else alert('다시 해보세요!!')
+        }
+
+        $button.addEventListener('click', onClickButton);
+        $input.addEventListener('input', onInput);
+    </script>
+
+    </script>
+
+
+</body>
+</html>

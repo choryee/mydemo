@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>끝말잇기</title>
+</head>
+
+<body>
+
+<div><span id="order">1</span>번째 참가자</div>
+<div>제시어:  <span id="word"></span></div>
+<input type="text">
+<button>입력</button>
+
+
+<script>
+    let work="hello";
+    console.log(work[0]); //h
+    console.log(work.charAt(1)); //e
+
+  const number = Number(prompt('몇 명이 참가하나요?'));
+  let arr=new Array();
+  for(let i=0; i<number; i++){
+      arr[i]=i+1;
+  }
+  console.log(arr);
+  let num=0;
+
+    const $button = document.querySelector('button');
+    const $input = document.querySelector('input');
+    const $word = document.querySelector('#word');
+    const $order = document.querySelector('#order');
+
+    const onClickButton = () => {
+        let orders=$order.innerHTML;
+        ++num;
+
+        if(orders==1) {
+            $word.innerHTML=inputWord;
+            $input.value="";
+            $order.innerHTML = arr[num];
+        }
+        if(orders > 1) {
+            let last=$word.innerHTML;
+            let lastWord=last.charAt(last.length-1);
+            let firstWord=inputWord.charAt(0);
+            if (lastWord == firstWord) {
+                alert("통과!!");
+                $input.value = "";
+                $order.innerHTML = arr[num];
+                $word.innerHTML=inputWord;
+                if(num===arr[num]) num=0;
+
+            } else {
+                alert("틀렸습니다.");
+                $input.value = "";
+            }
+        }
+
+    };
+
+    let inputWord
+    const onInput = (event) => {
+        inputWord=event.target.value;
+        console.log(inputWord);
+
+    };
+
+    $button.addEventListener('click', onClickButton);
+    $input.addEventListener('input', onInput);
+</script>
+</body>
+
+</html>

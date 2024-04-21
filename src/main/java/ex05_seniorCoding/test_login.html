@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Test login</title>
+    <script src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.3/jquery.min.js" integrity="sha512-STof4xm1wgkfm7heWqFJVn58Hm3EtS31XFaagaa8VMReCXAkQnJZ+jEy8PCC/iT18dFy95WcExNHFTqLyp72eQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
+ <style>
+    * {font-size: 32px;}
+ </style>
+
+ <!--  <script src="login.js" /> -->
+
+ <script> 
+
+function checkLogin(){
+        var uid=get('userid'),
+            upw=get('userpw');
+        console.log('>>>>>>>', 'uid=',uid,', upw=', upw);
+
+        function docFind(tag){
+            return document.getElementById(tag);
+        }
+
+        var frm=docFind('frm');
+        var msg=docFind('msg');
+        var err=docFind('err');
+
+        //밑에 함수 정의는 틀린 듯.
+        function styleDisplay(tag, noneorblock){ //틀림
+            return tag.style.display=noneorblock;
+        }
+
+        function showorhide(id){ // 틀림
+            return id.show
+        }
+
+        function showId(id){
+          var cid=document.getElementById(id);
+          return cid.show();
+        }
+
+        function showId1(id){
+            var cid=$(id);
+            return cid.show();
+        }
+
+        function hideId(id){
+            var hid=document.getElementById(id);
+           return hid.hide();
+        }
+
+
+        if(uid==='a' && upw==='1'){
+          //  frm.style.display='none';
+           // styleDisplay(frm, 'block');
+            
+            frm.style.display='none';
+           // hideId('frm');
+            msg.style.display='block';
+           // showId('msg');
+            err.style.display='none';
+           // hideId('err');
+        }else{
+            frm.style.display='none';
+           // hideId('frm');
+            msg.style.direction='none';
+          //  hideId('msg');
+            err.style.display='block';
+           // showId('err');
+        }
+
+        return false;
+     }
+
+     function get(id){
+        return document.getElementById(id).value;
+     }
+
+
+</script>
+
+</head>
+<body>
+    <h5 id="title"> 시니어 코딩 웹개발 04 JS한방에 정리하기 2_2 맨 앞</h5>
+<!--밑 checkLogin()의 결과는 false이고, 결국 return false가 되므로, onsubmit="false"가 되면, 화면 갱신이 안 되어
+ 위에서 찍은 console.log의 결과가 콘솔창에 보인다. 제이쿼리 책. p. 345-->
+ <form id="frm" onsubmit="return checkLogin()" method="post">
+  <!--    <form action="checkLogin()"> -->
+    <input type="text" id="userid" value="" placeholder="Type your id..">
+    <input type="password" id="userpw" value="" placeholder="Type your password..">
+    <button> Sing-in</button> <!-- form안에 button은 submit이 된다.즉, 위의 action="checkLogin()를 실행한다는 것.
+     안 타게 하려면, <button type="button"> Sing-in</button> 이렇게 하면, 버튼의 onclick등을 탄다. -->
+ </form>
+
+ <p id="msg" style="text-align: center; color: green; display: none;">로그인 성공!!</p>
+ <p id="err" style="text-align: center; color: green; display: none;">로그인 fail!!</p>
+</body>
+</html>

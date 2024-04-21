@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.3/jquery.min.js" integrity="sha512-STof4xm1wgkfm7heWqFJVn58Hm3EtS31XFaagaa8VMReCXAkQnJZ+jEy8PCC/iT18dFy95WcExNHFTqLyp72eQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
+    <title>Document</title>
+</head>
+
+<body>
+
+<script>
+    //Do it. 자바스크립트+제이쿼리 책. 230518
+
+  const fuc=(a,b)=>{
+      return a>b;
+  }
+
+  function add(a,b){
+      return a+b;
+  }
+  add(2,3)
+  console.log('result>>', fuc(4,3) )
+  // -----------------------
+
+  var norWeight=function (weight, height) {
+ // function norWeight(weight, height) {
+      var totalWeight=(height-100)*0.9;
+      var overWeight=totalWeight-weight;
+      //console.log(totalWeight);
+
+      //console.log("결과 : 적정 체중은"+totalWeight+"이며, 현재는 "+overWeight +"초과한 것으로 나타납니다")
+      return "결과 : 적정 체중은"+totalWeight+"이며, 현재는 "+overWeight +"초과한 것으로 나타납니다";
+      //return 0;
+  }
+
+ norWeight(80, 180);
+  var myWeight=norWeight(80, 180);
+ //document.write(myWeight+""); //이렇게 쓰면, html에 직접 써짐.
+ console.log('myWeight>>', myWeight);
+ console.log('norWeight>>', norWeight(80, 180));
+
+  // ----------------------- p. 71
+  var expense=function (trans, grocery, drink) {
+      var total=trans+grocery+drink;
+      var over=10000-total;
+      var result=over+"원 초과";
+      return total> 10000 ? result: "돈 관리 잘함";
+  }
+  console.log('test>>', expense(3000,6000,3000));
+  // -----------------------
+  // var num=20;
+  // while(num>=10){
+  //     if(num%2== 0){
+  //         console.log("짝수:"+num);
+  //         document.write("짝수:"+num);
+  //         num--;
+  //     }
+  // }
+
+  // ----------------------- p.99
+  // var input=prompt("현재 몇월 입니까?", "0");
+  // var lastDay;
+  //
+  // switch (input) {
+  //     case "1":
+  //         lastDay = 31;
+  //         break;
+  //     case "2":
+  //         lastDay = 28;
+  //         break;
+  // }
+  // console.log('lastDay>>',lastDay);
+  // document.write("<font color = 'blue'>"+ lastDay+"</font>");
+  // ----------------------- p. 106
+  var today=new Date();
+console.log('today>>',today.getFullYear())
+
+  var m=new Date(2002,4,31);
+console.log('m.getDay()', m.getDay());
+
+//console.log('random>>', Math.floor(Math.random()*3)+1);
+  // ----------------------- p. 120
+// var random=Math.ceil(Math.random()*3);
+// console.log('random>>', random)
+// var computer;
+//
+// switch (random){
+//     case 1:
+//         computer="가위";
+//         break;
+//     case 2:
+//         computer="바위";
+//         break;
+//     case 3:
+//         computer="보";
+//         break;
+// }
+//
+// var input=prompt("컴퓨터의 결정은?", "가위");
+// if(computer === input){
+//     alert("정답입니다!!");
+// }else {
+//     alert("아쉽습니다.!!");
+// }
+
+  // ----------------------- p. 123
+  const array = [30, 'kim', true];
+  for(const i in array){ //array베열을 하나씩 i에 넣고, 그것에서 돌림.
+    document.write(array[i], "<br/>");
+}
+  document.write("-----------<br/>");
+
+  const arrayItem=[{name:"cup", price: 10}, {name:"pen", price: 15}]
+  //var itemList  = arrayItem.forEach(function (aa) { //arrayItem를 하나씩 aa에 넣고, 그 aa의 각 객체에 접근 가능하다.
+  arrayItem.forEach(function (aa) { //arrayItem를 하나씩 aa에 넣고, 그 aa의 각 객체에 접근 가능하다.
+      console.log('aa.name>>', aa.name);
+      document.write(aa.name, "<br/>" );
+      //return aa.name;
+
+  })
+  //console.log('itemList>>>', itemList); //undefined
+
+  // ----------------------- p. 124. 각 매서드를 원초적 구현 연습하기.
+  //함수형 코딩책. 125참조.
+
+  // splice() 잘라서, 붙인다.
+
+  var array2=[];
+  var phone="010-3374-7328";
+  var arr=phone.split("-");  // ['010','3374','7328'] 각각 짤라서, 배열에 넘.
+  console.log('arr>>', arr);
+  var array2=arr.forEach(function (aa) {
+
+console.log('aa>>', aa); // 출력됨. //010 //3374 //7328
+  })
+//console.log('aa>>', aa[2]);
+  // ----------------------- p. 133
+var str=phone.charAt(9); //7
+ // console.log(str);
+var str1=phone.substr(9,4);
+console.log(str1); //7328
+var str2=phone.replace(str1, "****");
+console.log(str2)
+  // ----------------------- p. 134
+// var input1=prompt("당산의 이메일 주소는?", "aa@aa.com");
+// var str3=input1.match("@");
+// console.log(typeof str3); //object
+// document.write(""+str3); // @
+//
+// if(str3.includes('@')) {
+//     alert('올바른 형식입니다.')
+// }else {
+//     alert('틀린 형식입니다.')
+// }
+  // ----------------------- p. 134
+  //var input1=prompt("당산의 이메일 주소는?", "aa@aa.com");
+var arrUrl=[".co.kr", ".com", ".net", ".or.kr", ".go.kr"];
+var check1=false;
+var check2=false;
+
+//if(input1.indexOf('@') > 0) check1=true;
+// arrUrl.forEach(function (array)){
+//     if(array.indexOf(array) > 0) check2=true;
+//   }
+
+// arrUrl.forEach(function (array1) {
+//     console.log('array1>>', array1);
+//     var arrayInput=input1.includes(array1); //true/false
+//     console.log('arrayInput>>', arrayInput);
+//     if(arrayInput){
+//         check1=true;
+//     }
+// })
+//   console.log('check1>>', check1);
+
+  // if(check1)
+  //     alert('올바른 형식입니다.')
+  // else
+  //     alert('틀린 형식입니다.')
+  // -----------------------
+
+  // -----------------------153
+  document.write("-----------<br/>");
+  var i=0;
+  //var auto=setInterval("console.log(i++);", 1000);
+
+  // -----------------------158
+  document.write("href:"+location.href, "<br/>");
+
+
+</script>
+<button onclick="clearInterval(auto)"> stop</button>
+
+
+</body>
+</html>

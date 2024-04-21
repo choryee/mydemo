@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>끝말잇기</title>
+</head>
+
+<body>
+
+<div><span id="order">1</span>번째 참가자</div>
+<div>제시어:  <span id="word"></span></div>
+<input type="text">
+<button>입력</button>
+
+
+<script>
+  const number = Number(prompt('몇 명이 참가하나요?'));
+   let arr=new Array();
+   let next=0;
+   for(let i=0; i<number; i++){
+       arr[i]=i+1;
+       next++;
+   }
+   console.log('arr>>', arr);
+   console.log('next>>', next);
+
+    const $button = document.querySelector('button');
+    const $input = document.querySelector('input');
+    const $word = document.querySelector('#word');
+    const $order = document.querySelector('#order');
+    let word=['아버지', '사과', '우주','미국'];
+    let newWord; // 새로 입력한 단어
+   let randomWord;
+   let word1=Math.floor(Math.random()*3);
+   for(var i=0; i<word.length; i++){
+       randomWord=word[word1];
+   }
+
+   $word.innerHTML=randomWord;
+
+        let num=0;
+    const onClickButton = () => {
+
+        if(newWord==null)alert('입력하새요!');
+
+        let lastWord=randomWord.charAt(randomWord.length-1);
+        let firstWord=newWord.charAt(0);
+        if(lastWord === firstWord){
+            alert('통과!!');
+            $input.value="";
+            ++num;
+            if(num == arr.length) num=0;
+            console.log('num>>', num);
+            $order.innerHTML=arr[num];
+            $word.innerHTML=randomWord;
+            //window.location.reload();
+        }else {
+            alert('다시 생각해보세요');
+            $input.value = "";
+            $input.focus();
+
+            console.log('버튼클릭')
+        }
+    };
+
+    const onInput = (event) => {
+        newWord = event.target.value;
+        console.log(newWord)
+    };
+
+    $button.addEventListener('click', onClickButton);
+    $input.addEventListener('input', onInput);
+</script>
+</body>
+
+</html>

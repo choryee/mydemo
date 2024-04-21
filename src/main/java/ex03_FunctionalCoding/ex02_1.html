@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.3/jquery.min.js" integrity="sha512-STof4xm1wgkfm7heWqFJVn58Hm3EtS31XFaagaa8VMReCXAkQnJZ+jEy8PCC/iT18dFy95WcExNHFTqLyp72eQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
+    <title>Document</title>
+</head>
+<body>
+<script>
+    //230426 함수형코딩책. p. 62연습
+
+    var shopping_cart=[];
+    var shopping_cart_total=0;
+
+    // function add_item_to_cart(name, price){
+    //     shopping_cart.push({
+    //         name:name, price:price
+    //     })
+    //     console.log('shopping_cart>>>', shopping_cart)
+    //    // calc_cart_total();
+    // }
+function add_item_to_cart(name, price) {
+    var item=make_cart_item(name, price);
+    shopping_cart=add_item(shopping_cart, item);
+
+    function make_cart_item(name, price) {
+        return {name: name, price: price};
+    }
+
+    function add_element_last(array, elem) {
+        var new_array = array.slice();
+        new_array.push(elem);
+        console.log('new_array>>', new_array)
+        return new_array;
+
+    }
+
+    function add_item(cart, item) {
+        return add_element_last(cart, item);
+    }
+
+   // return add_element_last(array1, elem1);
+    return 'ok';
+}
+
+    console.log('add_item_to_cart("book", 100)>>', add_item_to_cart("book", 100))
+    console.log('add_item_to_cart("book", 100)>>', add_item_to_cart("cup", 20))
+    console.log('shopping_cart>>', shopping_cart)
+   // console.log('add_element_lastadd_element_last>>', add_element_last([{name:"mouse", price:10}], make_cart_item("cup", 20)))
+   // console.log('add_item>>', add_item(cart, item));
+
+
+    function calc_cart_total(){
+        // shopping_cart_total=0;
+        // for(var i=0; i<shopping_cart.length; i++){
+        //     var item=shopping_cart[i];
+        //    // console.log('item>>', item)
+        //    // console.log('item.name>>', item.name)
+        //     shopping_cart_total +=item.price;
+        // }
+       //console.log('shopping_cart_total>>', shopping_cart_total )
+        //
+        //set_cart_total_dom();
+
+        //밑은 리팩토링한 것. p/ 68 shopping_cart=> cart
+        var cart=shopping_cart;
+        shopping_cart_total= calc_total(cart);
+
+        function calc_total(){
+            var total=0;
+            for(var i=0; i<cart.length; i++){
+                var item=cart[i];
+                total+=item.price;
+            }
+            return total;
+        }
+
+       return shopping_cart_total;
+    } // --calc_cart_total()
+
+   // add_item_to_cart('pasta', 10);
+   // add_item_to_cart('tacos', 30);
+    console.log('calc_cart_total()>>>>>', calc_cart_total())
+    //calc_cart_total(); 
+
+    // var total=$('#total')
+
+    //shopping_cart_total * 0.10=>  calc_tax
+    function update_tax_dom(){
+        set_tax_dom(shopping_cart_total * 0.10);
+    }
+
+    function update_tax_dom(){
+        set_tax_dom(calc_tax(shopping_cart_total));
+    }
+
+    function calc_tax(amount){
+        return amount * 0.10;
+    }
+
+
+</script>
+
+<div> 
+    장바구니 금액 : 
+    <h3 id="total"> <script> document.getElementById('total').innerHTML = calc_cart_total() + ' dollars'; </script> </h3>
+    tax :
+    <h3 id="amount"> <script> document.getElementById('amount').innerHTML = calc_tax(100) + ' dollars'; </script> </h3>
+</div>
+
+</body>
+</html>

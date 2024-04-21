@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+<body>
+
+    <div id="root">
+        <word-relay start-word="제로초"></word-relay>
+        <word-relay start-word="세경"></word-relay>
+        <word-relay start-word="유미"></word-relay>
+
+    </div>
+
+</body>
+<script>
+    //<word-relay>가 원래는 3개를 만들어도, 모든 내용이 공통이였는데, 그 안의 내용이 살짝만 다르게 할려면, props사용해야.
+    //원래 위 부분을 template에 붙이고, 위는 <word-relay>쓰면 됨.
+    //template에서는 react처럼 최상의 태그는 하나여야.
+    Vue.component('wordRelay',{
+        template:`
+
+          <div>
+              <div> {{word}}</div><br/>
+                  <form v-on:submit="onSubmitForm">
+                      <input type="text" v-model="value" ref="answer">
+                      <button type="submit">입력</button>
+                  </form>
+              <div>{{result}}</div>
+          </div>
+        `,
+
+        // data:{ //component로 만들때는 밑 처럼 함수형태로 해야
+        //     word:"민성",
+        //     value:'',
+        //     result:'',
+        //
+        // },
+
+        //html에서는 kebab-case로 start-word쓰더라도, JS에서는 자동으로 startWord식으로 인식해줌. 2-3강.
+        props:['startWord'],
+        data() {
+            return {
+                word: this.startWord,
+                value: '',
+                result: '',
+            }
+        },
+
+
+        methods:{
+            //aa(){return this.value}, //a()함수로 data의 first에 접근가능.
+            onSubmitForm(e){
+                e.preventDefault();
+                if(this.word.charAt(this.word.length-1) == this.value.charAt(0)){
+                    this.result="정답!!";
+                    this.word=this.value;
+                    this.value='';
+
+                }else{
+                    this.result="땡~~";
+                    this.value='';
+                    this.$refs.answer.focus();
+                }
+            }
+
+        },
+    })
+</script>
+
+<script>
+    //v- 가 붙은것은 data, methods에 접근 할 수 있다.
+    // v-if="liked" 의 따옴표안에는 JS를 쓸수 있다.
+    // <div v-if="liked" html의 태그의 '속성'으로 데이터에 접근하려면, " "형식으로
+    // 태그사이의 부분에서는 {{}}으로 접근가능.
+    // methods에서는 a(){this.first}, //a()함수로 data의 first에 접근가능.
+    //v-model는 input와 data를 연결해주는 것.
+
+    const app=new Vue({
+        el:"#root",
+        //바뀌는 부분에 알아야. 그것을 data로 만드는것.
+    })
+</script>
+</html>

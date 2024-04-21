@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.3/jquery.min.js" integrity="sha512-STof4xm1wgkfm7heWqFJVn58Hm3EtS31XFaagaa8VMReCXAkQnJZ+jEy8PCC/iT18dFy95WcExNHFTqLyp72eQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
+    <title>Document</title>
+</head>
+<body>
+<script>
+    var array=['cup','phone','pen'];
+
+   function first_element(array){
+       return array[0];
+   }
+
+    function drop_first_test(array){
+       var array_copy=array.slice();
+       array_copy.shift();
+       return array_copy;
+   }
+    //console.log('', );
+    console.log('first_element(array)>>',first_element(array) );
+    console.log('drop_first_test(array)>>', drop_first_test(array));
+   //first_element(array)
+</script>
+
+<div> 
+    장바구니 금액 : 
+    <h3 id="total"> <script> document.getElementById('total').innerHTML = calc_cart_total() + ' dollars'; </script> </h3>
+    <h3 id="amount"> <script> document.getElementById('amount').innerHTML = calc_tax(100) + ' dollars'; </script> </h3>
+</div>
+
+</body>
+</html>
